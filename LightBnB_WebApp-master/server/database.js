@@ -93,7 +93,7 @@ exports.getFulfilledReservations = getFulfilledReservations;
  */
  const getAllProperties = function(options, limit = 10) {
   const qryParams = [];
-  let qryStr = `SELECT properties.*, AVG(property_reviews.rating) AS average_rating
+  let qryStr = `SELECT properties.*, avg(property_reviews.rating) as average_rating, count(property_reviews.rating) as review_count
   FROM properties
   JOIN property_reviews ON property_id = properties.id
   `;
@@ -223,11 +223,6 @@ exports.updateReservation = updateReservation;
 //
 //  Deletes an existing reservation
 //
-const deleteReservation = function(reservationId) {
-
-}
-exports.deleteReservation = deleteReservation;
-
 const getIndividualReservation = function(reservationId) {
   const queryString = `SELECT * FROM reservations WHERE reservations.id = $1`;
   return pool.query(queryString, [reservationId])
@@ -235,3 +230,40 @@ const getIndividualReservation = function(reservationId) {
 }
 
 exports.getIndividualReservation = getIndividualReservation;
+
+//
+//  Deletes an existing reservation
+//
+const deleteReservation = function(reservationId) {
+  const queryParams = [reservationId];
+  const queryString = `DELETE FROM reservations WHERE id = $1;`;
+  return pool.query(queryString, queryParams)
+    .then(() => console.log("Successfully deleted!"))
+    .catch((err) => console.error(err));
+}
+
+exports.deleteReservation = deleteReservation;
+
+
+/*
+ *  get reviews by property
+ */
+/*
+ *  get reviews by property
+ */
+const getReviewsByProperty = function(propertyId) {
+  const queryString = `
+    SELECT property_reviews.id, property_reviews.rating AS review_rating, property_reviews.message AS review_text, 
+    users.name, properties.title AS property_title, reservations.start_date, reservations.end_date
+    FROM property_reviews
+    JOIN reservations ON reservations.id = property_reviews.reservation_id  
+    JOIN properties ON properties.id = property_reviews.property_id
+    JOIN users on users.id = property_reviews.guest_id
+    WHERE properties.id = $1
+    ORDER BY reservations.start_date ASC;
+  `
+  const queryParams = [propertyId];
+  return pool.query(queryString, queryParams).then(res => res.rows)
+}
+
+exports.getReviewsByProperty = getReviewsByProperty;

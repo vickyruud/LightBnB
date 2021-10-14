@@ -227,6 +227,7 @@ $(() => {
               propertyListings.addProperties(json.reservations, { upcoming: true })
             })
             views_manager.show('listings');
+            $('#reservation-details').empty();
           })
       })
       .catch(error => {
