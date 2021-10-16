@@ -163,6 +163,7 @@ const addReservation = function(reservation) {
   /*
    * Adds a reservation from a specific user to the database
    */
+  console.log(reservation);
   return pool.query(`
     INSERT INTO reservations (start_date, end_date, property_id, guest_id)
     VALUES ($1, $2, $3, $4) RETURNING *;

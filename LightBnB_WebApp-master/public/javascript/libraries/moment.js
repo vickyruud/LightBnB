@@ -3357,7 +3357,7 @@
       var func = 'moment';
       var zone = '';
       if (!this.isLocal()) {
-          func = this.utcOffset() === 0 ? 'moment.utc' : 'moment.parseZone';
+          func = this.utcOffset() === 0 ? 'moment' : 'moment.parseZone';
           zone = 'Z';
       }
       var prefix = '[' + func + '("]';

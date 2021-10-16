@@ -41,7 +41,6 @@ $(() => {
       $('.delete-button').on('click', function(event) {
         event.preventDefault();
         const idData = $(this).attr('id').substring(16);
-        console.log(idData);
         deleteReservation(idData)
         .then(() => {})
         .catch(err => console.error(err));
@@ -64,9 +63,11 @@ $(() => {
         views_manager.show("newReview", idData);
         $('.review-form').slideDown("fast");
       })
+      
     } else {
       $('.reserve-button').on('click', function() {
         const idData = $(this).attr('id').substring(17);
+        console.log(idData, "from reserve button");
         views_manager.show('newReservation', idData);
       })
       $('.review_details').on('click', function() {
@@ -74,6 +75,7 @@ $(() => {
         views_manager.show('showReviews', idData);
       })
     }
+    $('#reservation-details').detach();
   }
   window.propertyListings.addProperties = addProperties;
 

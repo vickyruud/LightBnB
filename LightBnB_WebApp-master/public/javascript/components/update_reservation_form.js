@@ -168,7 +168,6 @@ $(() => {
     event.preventDefault();
     views_manager.show('none');
     const formArray = $(this).serializeArray();
-    console.log(formArray);
     // check for presence of variables, if they're there, assign them
     if (formArray[0].value && formArray[1].value && formArray[2].value) {
       startDate = `${formArray[2].value}-${formArray[1].value}-${formArray[0].value}`
@@ -217,7 +216,6 @@ $(() => {
       const dataObj = { start_date: startDate, end_date: endDate, reservation_id: reservationId };
       updateReservation(dataObj)
       .then(data => {
-        console.log(`updated reservation: ${data}`);
         views_manager.show('none');
         propertyListings.clearListings();
         getFulfilledReservations()

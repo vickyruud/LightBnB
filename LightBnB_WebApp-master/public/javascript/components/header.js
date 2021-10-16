@@ -47,6 +47,7 @@ $(() => {
 
   $("header").on("click", '.my_reservations_button', function() {
     propertyListings.clearListings();
+    $(".property-reviews").slideUp('fast');
     getFulfilledReservations()
       .then(function(json) {
         propertyListings.addProperties(json.reservations, { upcoming: false });
@@ -60,6 +61,7 @@ $(() => {
   });
   $("header").on("click", '.my_listing_button', function() {
     propertyListings.clearListings();
+    $(".property-reviews").slideUp('fast');
     getAllListings(`owner_id=${currentUser.id}`)
       .then(function(json) {
         propertyListings.addProperties(json.properties);
@@ -69,6 +71,7 @@ $(() => {
 
   $("header").on("click", '.home', function() {
     propertyListings.clearListings();
+    $(".property-reviews").slideUp('fast');
     getAllListings()
       .then(function(json) {
         propertyListings.addProperties(json.properties);
@@ -78,22 +81,27 @@ $(() => {
 
   $('header').on('click', '.search_button', function() {
     views_manager.show('searchProperty');
+    $(".property-reviews").slideUp('fast');
   });
 
   $("header").on('click', '.login_button', () => {
     views_manager.show('logIn');
+    $(".property-reviews").slideUp('fast');
   });
   $("header").on('click', '.sign-up_button', () => {
     views_manager.show('signUp');
+    $(".property-reviews").slideUp('fast');
   });
   $("header").on('click', '.logout_button', () => {
     logOut().then(() => {
       header.update(null);
     });
+    $(".property-reviews").slideUp('fast');
   });
 
   $('header').on('click', '.create_listing_button', function() {
     views_manager.show('newProperty');
+    $(".property-reviews").slideUp('fast');
   });
 
 });

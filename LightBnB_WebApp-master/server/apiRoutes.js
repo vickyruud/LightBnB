@@ -47,7 +47,7 @@ module.exports = function(router, database) {
         res.send(e);
       })
     } 
-  });
+  })
 
   router.get('/reservations/upcoming', (req, res) => {
     const userId = req.session.userId;
@@ -96,6 +96,8 @@ module.exports = function(router, database) {
       res.send(reviews);
     })
   })
+
+  //adds a review
 
   router.post('/reviews/:reservationId', (req, res) => {
     const reservationId = req.params.reservationId;
