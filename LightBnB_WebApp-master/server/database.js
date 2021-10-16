@@ -279,17 +279,3 @@ const addReview = function (review) {
 };
 exports.addReview = addReview;
 
-const myListings = function (guest_id) {
-  const qryStr = `SELECT properties.*, avg(property_reviews.rating) as average_rating, count(property_reviews.rating) as review_count
-  FROM properties
-  LEFT JOIN property_reviews ON properties.id = property_id
-  WHERE properties.owner_id = $1
-  `;
-
-  const qryParams = [guest_id];
-  return pool.query(qryStr, qryParams).then(res => res.rows);
-
-
-
-};
-exports.myListings = myListings;
