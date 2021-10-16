@@ -160,8 +160,8 @@ $(() => {
   window.$updateReservationForm = $updateReservationForm;
 
   $('body').on('click', '#reservation-form__cancel', function() {
-    $('#reservation-details').detach();
     views_manager.show('listings');
+    return false;
   });
 
   $updateReservationForm.on('submit', function (event) {
