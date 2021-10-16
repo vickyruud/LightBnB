@@ -44,7 +44,7 @@ $(() => {
         deleteReservation(idData)
         .then(() => {})
         .catch(err => console.error(err));
-        alert('Reservation has been deleted!'); 
+        alert('Reservation has been deleted successfully!'); 
         propertyListings.clearListings();
         getFulfilledReservations()
           .then(function(json) {

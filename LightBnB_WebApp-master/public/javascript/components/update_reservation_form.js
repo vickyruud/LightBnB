@@ -232,7 +232,7 @@ $(() => {
             })
             views_manager.show('listings');
             $('#reservation-details').detach();
-            alert('Reservation has been updated!');
+            alert('Reservation has been updated successfully!');
           })
       })
       .catch(error => {
