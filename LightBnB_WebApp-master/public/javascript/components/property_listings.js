@@ -65,11 +65,10 @@ $(() => {
       })
       
     } else {
-      $('.reserve-button').on('click', function() {
+      $(document).on('click','.reserve-button', function() {
         const idData = $(this).attr('id').substring(17);
-        console.log(idData, "from reserve button");
         views_manager.show('newReservation', idData);
-      })
+      });
       $('.review_details').on('click', function() {
         const idData = $(this).attr('id').substring(15);
         views_manager.show('showReviews', idData);
