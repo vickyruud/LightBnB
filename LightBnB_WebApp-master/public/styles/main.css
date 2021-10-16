@@ -9,7 +9,7 @@
   margin: 20px 0;
   width: 100%;
   max-width: 600px;
-  height: 230px;
+  height: 260px;
   border: 1px solid black;
   box-sizing: border-box;
   display: flex;
@@ -41,6 +41,9 @@
 }
 .property-listing .review_count:hover {
   color: blue;
+}
+.property-listing .property-listing__details {
+  padding: 10px;
 }
 
 @media screen and (max-width: 400px) {
