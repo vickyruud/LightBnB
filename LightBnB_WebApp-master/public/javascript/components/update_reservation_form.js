@@ -240,7 +240,7 @@ $(() => {
         views_manager.show('listings');
       })
     } else {
-      console.log(errorMessage);
+      alert(errorMessage);
       // we can redisplay the form by pulling the information in the datatag!
       $('#reservation-details').detach();
       const dataObj = {
