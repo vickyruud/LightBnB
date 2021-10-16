@@ -89,6 +89,10 @@ $(() => {
 
   window.$newPropertyForm = $newPropertyForm;
 
+  $('body').on('click', '#property-form__cancel', function() {
+    views_manager.show('listings');
+  });
+
   $newPropertyForm.addressfield({
     json: 'javascript/libraries/addressfield/addressfield.min.json',
     fields: {
