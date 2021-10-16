@@ -13,8 +13,15 @@ $(() => {
       </select>
       <div id="datatag" class="hidden"></div>
       <button type="submit">Submit</button>
+      <a id="cancel-review" href="#">Cancel</a>
     </form>
   `)
+
+
+  $('body').on('click', '#cancel-review', function() {
+    views_manager.show('listings');
+    return false;
+  });
 
   $newReviewForm.on('submit', function(event) {
     event.preventDefault();
