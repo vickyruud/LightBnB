@@ -12,6 +12,7 @@ $(() => {
     $signUpForm.detach();
     $newReservationForm.detach();
     $updateReservationForm.detach();
+    $newReviewForm.detach();
 
     let datatag = '';
 
@@ -59,7 +60,17 @@ $(() => {
       $(dataTag).appendTo("#datatag");
       $(errorMessage).appendTo('#error-message');
       break;
-      case 'error': {
+    case 'showReviews':
+      getReviewsByProperty(data)
+      .then(reviews => propertyReviews.addReviews(reviews))
+      $propertyReviews.appendTo($main);
+      break;
+    case 'newReview':
+      dataTag = `<h4>${data}</h4>`;
+      $newReviewForm.appendTo($main);
+      $(dataTag).appendTo("#datatag");
+      break;
+    case 'error': {
         const $error = $(`<p>${arguments[1]}</p>`);
         $error.appendTo('body');
         setTimeout(() => {
@@ -68,7 +79,7 @@ $(() => {
         }, 2000);
         
         break;
-      }
+    }
     }
   }
   

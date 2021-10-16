@@ -213,7 +213,6 @@ const updateReservation = function(reservationData) {
   }
   queryString += ` WHERE id = $${queryParams.length + 1} RETURNING *;`
   queryParams.push(reservationData.reservation_id);
-  console.log(queryString);
   return pool.query(queryString, queryParams)
     .then(res => res.rows[0])
     .catch(err => console.error(err));
@@ -267,3 +266,14 @@ const getReviewsByProperty = function(propertyId) {
 }
 
 exports.getReviewsByProperty = getReviewsByProperty;
+
+const addReview = function (review) {
+  const queryString = `INSERT INTO property_reviews (guest_id, property_id, reservation_id, rating, message)
+  VALUES ($1, $2, $3, $4, $5)
+  RETURNING *;
+  `;
+
+  const queryParams = [review.guest_id, review.property_id,review.reservation_id, parseInt(review.rating), review.message];
+  return pool.query(queryString, queryParams).then(res => res.rows);
+};
+exports.addReview = addReview;

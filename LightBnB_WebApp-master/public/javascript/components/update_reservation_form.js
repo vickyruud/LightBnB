@@ -208,6 +208,7 @@ $(() => {
     if (startDate && endDate) {
       if (new Date(startDate) >= new Date(endDate)) {
         errorMessage = "New start date cannot be on or after the new end date.";
+        
       }
     }
   
@@ -227,7 +228,8 @@ $(() => {
               propertyListings.addProperties(json.reservations, { upcoming: true })
             })
             views_manager.show('listings');
-            $('#reservation-details').empty();
+            $('#reservation-details').detach();
+            alert('Reservation has been updated!');
           })
       })
       .catch(error => {
@@ -237,6 +239,7 @@ $(() => {
     } else {
       console.log(errorMessage);
       // we can redisplay the form by pulling the information in the datatag!
+      $('#reservation-details').detach();
       const dataObj = {
         id: $(this).find('#datatag-reservation-id').text(),
         start_date: $(this).find('#datatag-start-date').text(),
@@ -246,5 +249,6 @@ $(() => {
       }
       views_manager.show('updateReservation', dataObj);
     }
+    
   });
 });
